@@ -13,7 +13,9 @@
         </el-aside>
         <!--右侧-->
         <el-main>
-          <Appmain></Appmain>
+          <transition name="fade">
+            <router-view></router-view>
+          </transition>
         </el-main>
       </el-container>
     </el-container>
@@ -29,27 +31,27 @@ export default {
   data () {
     const menus_ = [{
       menuId: '1',
-      menuName: '流程模板',
+      menuName: '系统管理',
       subMenu: [
-        {menuId: 1.1, menuName: '流程模板创建', menuUrl: '/template/process'},
-        {menuId: 1.2, menuName: '流程模板发布', menuUrl: '/template/deploy'}
+        {menuId: 1.1, menuName: '用户管理', menuUrl: '/template/process'},
+        {menuId: 1.2, menuName: '角色管理', menuUrl: '/template/deploy'}
       ]
     },
     {
       menuId: '2',
-      menuName: '流程实例',
+      menuName: '技术支持',
       subMenu: [
-        {menuId: 2.1, menuName: '启动流程实例', menuUrl: '/21'},
-        {menuId: 2.2, menuName: '我发起的流程', menuUrl: '/22'}
+        {menuId: 2.1, menuName: 'API文档', menuUrl: '/21'},
+        {menuId: 2.2, menuName: '参数描述', menuUrl: '/22'}
       ]
     },
     {
       menuId: '3',
-      menuName: '工作项',
+      menuName: '关于我们',
       subMenu: [
-        {menuId: 3.1, menuName: '工作项办理', menuUrl: '/31'},
-        {menuId: 3.2, menuName: '我的工作项', menuUrl: '/32'},
-        {menuId: 3.3, menuName: '我办理的工作项', menuUrl: '/33'}
+        {menuId: 3.1, menuName: '公司简介', menuUrl: '/31'},
+        {menuId: 3.2, menuName: '关于我们', menuUrl: '/32'},
+        {menuId: 3.3, menuName: '人员招聘', menuUrl: '/33'}
       ]
     }
     ]
@@ -79,7 +81,6 @@ export default {
       }
 
       .el-aside {
-        background-color: $gray;
         text-align: center;
         line-height: 200px;
       }

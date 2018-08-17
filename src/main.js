@@ -14,11 +14,16 @@ Vue.use(ElementUI, {locale})
 
 Vue.config.productionTip = false
 
+const bus = new Vue()
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
+  data: {
+    bus
+  },
   components: { App },
   template: '<App/>'
 })

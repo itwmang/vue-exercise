@@ -1,20 +1,35 @@
 <template>
   <div>
-
-    <el-table ref="multipleTable" :data="tableData" stripe  tooltip-effect="dark" @selection-change="handleSelectionChange" header-row-class-name="header-class">
-      <el-table-column type="selection" width="55" ></el-table-column>
-      <el-table-column prop="date" label="日期" width="200">
+    <!--<el-row :gutter="12">-->
+      <!--<el-col :span="3">-->
+        <!--<el-card shadow="hover" body-style="padding:0px">-->
+          <!--{{title}}-->
+        <!--</el-card>-->
+      <!--</el-col>-->
+    <!--</el-row>-->
+    <el-table :data="tableData" :header-cell-style="headCell" v-loading="loading">
+      <el-table-column prop="date" label="日期" width="140">
       </el-table-column>
-      <el-table-column prop="name" label="姓名" width="150">
+      <el-table-column prop="name" label="姓名" width="120">
       </el-table-column>
       <el-table-column prop="address" label="地址">
       </el-table-column>
+      <el-table-column label="操作" width="300">
+        <template slot-scope="scope">
+          <el-button
+            size="mini">编辑
+          </el-button>
+          <el-button
+            size="mini"
+            type="danger">删除
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
-
   </div>
 </template>
-
 <script>
+
 export default {
   name: 'main-vue',
   data () {
@@ -23,30 +38,30 @@ export default {
       name: '王小虎',
       address: '上海市普陀区金沙江路 1518 弄'
     }
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
     return {
-      multipleSelection: [],
+      title: '主页',
+      loading: true,
       tableData: Array(10).fill(item)
     }
   },
+  computed: {
+    routerParam: function () {
+      // 接收params和query的值
+      // return this.$route.params.routerParam
+      return this.$route.query.routerParam
+    }
+  },
   methods: {
-    toggleSelection (rows) {
-      if (rows) {
-        rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row)
-        })
-      } else {
-        this.$refs.multipleTable.clearSelection()
-      }
-    },
-    handleSelectionChange (val) {
-      this.multipleSelection = val
+    headCell: function () {
+      return 'text-align:center'
     }
   }
 }
 </script>
 
 <style scoped>
-  tr.header-class .cell{
-    text-align: center;
-  }
+
 </style>
