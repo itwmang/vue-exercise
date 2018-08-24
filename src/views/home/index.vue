@@ -4,7 +4,7 @@
 
       <!--头部-->
       <el-header height="65">
-        <Navbar :menuDatas="menuData"></Navbar>
+        <Navbar :menuDatas="menuData" :settingData="settingData"></Navbar>
       </el-header>
       <el-container>
         <!--左侧-->
@@ -15,6 +15,7 @@
         <el-main>
           <transition name="fade">
             <router-view></router-view>
+            <router-link to="main"></router-link>
           </transition>
         </el-main>
       </el-container>
@@ -33,8 +34,8 @@ export default {
       menuId: '1',
       menuName: '系统管理',
       subMenu: [
-        {menuId: 1.1, menuName: '用户管理', menuUrl: '/template/process'},
-        {menuId: 1.2, menuName: '角色管理', menuUrl: '/template/deploy'}
+        {menuId: 1.1, menuName: '用户管理', menuUrl: '/index/process'},
+        {menuId: 1.2, menuName: '角色管理', menuUrl: '/index/deploy'}
       ]
     },
     {
@@ -53,11 +54,20 @@ export default {
         {menuId: 3.2, menuName: '关于我们', menuUrl: '/32'},
         {menuId: 3.3, menuName: '人员招聘', menuUrl: '/33'}
       ]
-    }
+    }]
+    const settingData_ = [
+      {menuId: 1, menuName: '个人信息', menuUrl: '/setting'},
+      {menuId: 2, menuName: '消息代办', menuUrl: '/todo'},
+      {menuId: 2, menuName: '注销', menuUrl: '/logout'}
     ]
     return {
-      menuData: menus_
+      menuData: menus_,
+      settingData: settingData_
     }
+  },
+  mounted: function () {
+    debugger
+    this.$router.push({name: 'main'})
   }
 }
 </script>

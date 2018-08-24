@@ -2,13 +2,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
-import {user} from './moduls'
+import {user, menu} from './moduls'
 
 Vue.use(Vuex)
 // 创建Store实例
 const store = new Vuex.Store({
   modules: {
-    user
+    user, menu
   },
   getters
 })

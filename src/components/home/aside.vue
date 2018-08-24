@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-menu :default-openeds="['1', '3']" router>
-      <el-submenu v-for="item in subItemDatas" :key="item.menuId" :index="item.menuid">
+    <el-menu :default-openeds="['1']" router  :default-active="defaultActive">
+      <el-submenu v-for="item in subItemDatas" :key="item.menuId" :index="item.menuId">
         <template slot="title"><i class="el-icon-message"></i>{{item.menuName}}</template>
-        <el-menu-item v-for="subItem in item.subMenu" :key="subItem.menuid" :index="subItem.menuUrl">
+        <el-menu-item v-for="subItem in item.subMenu" :key="subItem.menuId" :index="subItem.menuUrl">
           {{subItem.menuName}}
         </el-menu-item>
       </el-submenu>
@@ -17,8 +17,11 @@ export default {
   name: 'aside-vue',
   props: ['meuDatas'],
   data () {
+    // let _defaultActive = '/users'
+    let _defaultActive = ''
     return {
-      subItemDatas: []
+      subItemDatas: [],
+      defaultActive: _defaultActive
     }
   },
   created () {
